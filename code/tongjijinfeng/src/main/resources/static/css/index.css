@@ -1,0 +1,734 @@
+@charset "UTF-8";
+/**
+* dec: reset stylesheet
+* author: xpingzo
+*/
+/* reset */
+/*html,body{overflow-x:hidden}*/
+/* line 4, ../sass/base.scss */
+body {
+  font-family: "微软雅黑";
+}
+
+/* line 5, ../sass/base.scss */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 6, ../sass/base.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 7, ../sass/base.scss */
+fieldset, img, iframe {
+  border: 0 none;
+}
+
+/* line 8, ../sass/base.scss */
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* line 9, ../sass/base.scss */
+ol, ul, li {
+  list-style: none;
+}
+
+/* line 10, ../sass/base.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 400;
+}
+
+/* line 11, ../sass/base.scss */
+q:before, q:after {
+  content: '';
+}
+
+/* line 12, ../sass/base.scss */
+a, img {
+  display: inline-block;
+}
+
+/* line 13, ../sass/base.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 15, ../sass/base.scss */
+.f12 {
+  font-size: 12px;
+}
+
+/* line 16, ../sass/base.scss */
+.f13 {
+  font-size: 13px;
+}
+
+/* line 17, ../sass/base.scss */
+.f14 {
+  font-size: 14px;
+}
+
+/* line 18, ../sass/base.scss */
+.f16 {
+  font-size: 16px;
+}
+
+/* line 19, ../sass/base.scss */
+.f20 {
+  font-size: 20px;
+}
+
+/* line 20, ../sass/base.scss */
+.fb {
+  font-weight: 700;
+}
+
+/* line 21, ../sass/base.scss */
+.fn {
+  font-weight: 400;
+}
+
+/* line 22, ../sass/base.scss */
+.fi {
+  font-style: italic;
+}
+
+/* line 23, ../sass/base.scss */
+.t2 {
+  text-indent: 2em;
+}
+
+/* line 24, ../sass/base.scss */
+.unl {
+  text-decoration: underline;
+}
+
+/* line 25, ../sass/base.scss */
+.no_unl {
+  text-decoration: none;
+}
+
+/* line 28, ../sass/base.scss */
+.tl {
+  text-align: left;
+}
+
+/* line 29, ../sass/base.scss */
+.tc {
+  text-align: center;
+}
+
+/* line 30, ../sass/base.scss */
+.tr {
+  text-align: right;
+}
+
+/* line 31, ../sass/base.scss */
+.bc {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 32, ../sass/base.scss */
+.fl {
+  float: left;
+  display: inline;
+}
+
+/* line 33, ../sass/base.scss */
+.fr {
+  float: right;
+  display: inline;
+}
+
+/* line 34, ../sass/base.scss */
+.cb {
+  clear: both;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+/* line 35, ../sass/base.scss */
+.cl {
+  clear: left;
+}
+
+/* line 36, ../sass/base.scss */
+.cr {
+  clear: right;
+}
+
+/* line 37, ../sass/base.scss */
+.clearfix:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* line 38, ../sass/base.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 39, ../sass/base.scss */
+.vm {
+  vertical-align: middle;
+}
+
+/* line 40, ../sass/base.scss */
+.pr {
+  position: relative;
+}
+
+/* line 41, ../sass/base.scss */
+.pa {
+  position: absolute;
+}
+
+/* line 42, ../sass/base.scss */
+.abs-right {
+  position: absolute;
+  right: 0;
+}
+
+/* line 43, ../sass/base.scss */
+.zoom {
+  zoom: 1;
+}
+
+/* line 44, ../sass/base.scss */
+.hidden {
+  visibility: hidden;
+}
+
+/* line 45, ../sass/base.scss */
+.none {
+  display: none;
+}
+
+/* line 46, ../sass/base.scss */
+.block {
+  display: block;
+}
+
+/* line 47, ../sass/base.scss */
+.iblock {
+  display: inline-block;
+}
+
+/* line 50, ../sass/base.scss */
+.w {
+  width: 100%;
+}
+
+/* line 51, ../sass/base.scss */
+.h {
+  height: 100%;
+}
+
+/* line 54, ../sass/base.scss */
+.m10 {
+  margin: 10px;
+}
+
+/* line 55, ../sass/base.scss */
+.m15 {
+  margin: 15px;
+}
+
+/* line 56, ../sass/base.scss */
+.m30 {
+  margin: 30px;
+}
+
+/* line 57, ../sass/base.scss */
+.mt5 {
+  margin-top: 5px;
+}
+
+/* line 58, ../sass/base.scss */
+.mt10 {
+  margin-top: 10px;
+}
+
+/* line 59, ../sass/base.scss */
+.mt15 {
+  margin-top: 15px;
+}
+
+/* line 60, ../sass/base.scss */
+.mt20 {
+  margin-top: 20px;
+}
+
+/* line 61, ../sass/base.scss */
+.mt30 {
+  margin-top: 30px;
+}
+.mt160 {
+  margin-top: 160px;
+}
+/* line 62, ../sass/base.scss */
+.mb5 {
+  margin-bottom: 5px;
+}
+
+/* line 63, ../sass/base.scss */
+.mb10 {
+  margin-bottom: 10px;
+}
+
+/* line 64, ../sass/base.scss */
+.mb15 {
+  margin-bottom: 15px;
+}
+
+/* line 65, ../sass/base.scss */
+.mb20 {
+  margin-bottom: 20px;
+}
+
+/* line 66, ../sass/base.scss */
+.mb30 {
+  margin-bottom: 30px;
+}
+
+/* line 67, ../sass/base.scss */
+.ml5 {
+  margin-left: 5px;
+}
+
+/* line 68, ../sass/base.scss */
+.ml10 {
+  margin-left: 10px;
+}
+
+/* line 69, ../sass/base.scss */
+.ml15 {
+  margin-left: 15px;
+}
+
+/* line 70, ../sass/base.scss */
+.ml20 {
+  margin-left: 20px;
+}
+
+/* line 71, ../sass/base.scss */
+.ml30 {
+  margin-left: 30px;
+}
+
+/* line 72, ../sass/base.scss */
+.mr5 {
+  margin-right: 5px;
+}
+
+/* line 73, ../sass/base.scss */
+.mr10 {
+  margin-right: 10px;
+}
+
+/* line 74, ../sass/base.scss */
+.mr15 {
+  margin-right: 15px;
+}
+
+/* line 75, ../sass/base.scss */
+.mr20 {
+  margin-right: 20px;
+}
+
+/* line 76, ../sass/base.scss */
+.mr30 {
+  margin-right: 30px;
+}
+
+/* line 77, ../sass/base.scss */
+.p10 {
+  padding: 10px;
+}
+
+/* line 78, ../sass/base.scss */
+.p15 {
+  padding: 15px;
+}
+
+/* line 79, ../sass/base.scss */
+.p30 {
+  padding: 30px;
+}
+
+/* line 80, ../sass/base.scss */
+.pt5 {
+  padding-top: 5px;
+}
+
+/* line 81, ../sass/base.scss */
+.pt10 {
+  padding-top: 10px;
+}
+
+/* line 82, ../sass/base.scss */
+.pt15 {
+  padding-top: 15px;
+}
+
+/* line 83, ../sass/base.scss */
+.pt20 {
+  padding-top: 20px;
+}
+
+/* line 84, ../sass/base.scss */
+.pt30 {
+  padding-top: 30px;
+}
+
+/* line 85, ../sass/base.scss */
+.pb5 {
+  padding-bottom: 5px;
+}
+
+/* line 86, ../sass/base.scss */
+.pb10 {
+  padding-bottom: 10px;
+}
+
+/* line 87, ../sass/base.scss */
+.pb15 {
+  padding-bottom: 15px;
+}
+
+/* line 88, ../sass/base.scss */
+.pb20 {
+  padding-bottom: 20px;
+}
+
+/* line 89, ../sass/base.scss */
+.pb30 {
+  padding-bottom: 30px;
+}
+
+/* line 90, ../sass/base.scss */
+.pl5 {
+  padding-left: 5px;
+}
+
+/* line 91, ../sass/base.scss */
+.pl10 {
+  padding-left: 10px;
+}
+
+/* line 92, ../sass/base.scss */
+.pl15 {
+  padding-left: 15px;
+}
+
+/* line 93, ../sass/base.scss */
+.pl20 {
+  padding-left: 20px;
+}
+
+/* line 94, ../sass/base.scss */
+.pl30 {
+  padding-left: 30px;
+}
+
+/* line 95, ../sass/base.scss */
+.pr5 {
+  padding-right: 5px;
+}
+
+/* line 96, ../sass/base.scss */
+.pr10 {
+  padding-right: 10px;
+}
+
+/* line 97, ../sass/base.scss */
+.pr15 {
+  padding-right: 15px;
+}
+
+/* line 98, ../sass/base.scss */
+.pr20 {
+  padding-right: 20px;
+}
+
+/* line 99, ../sass/base.scss */
+.pr30 {
+  padding-right: 30px;
+}
+
+/* line 18, ../sass/index.scss */
+.wrap {
+  margin: 0 auto;
+  width: 1000px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+/* line 27, ../sass/index.scss */
+.section {
+  margin: 0 auto;
+  min-width: 1400px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+/* line 37, ../sass/index.scss */
+#fullpage {
+  position: relative;
+}
+
+/* line 40, ../sass/index.scss */
+.part1 {
+  position: relative;
+  text-align: center;
+}
+/* line 43, ../sass/index.scss */
+.part1 .header {
+  position: relative;
+  height: 70px;
+  min-width: 1000px;
+  background-color: #fff;
+  border-top: 6px solid #e4e8e9;
+}
+/* line 51, ../sass/index.scss */
+.part1 .img {
+  width: 100%;
+  height: -webkit-calc(100% - 76px);
+  height: calc(100% - 76px);
+}
+/* line 56, ../sass/index.scss */
+.part1 .logo {
+  left: 50%;
+  top: -6px;
+  margin-left: -600px;
+  border-top: 6px solid #5c2c89;
+  height: 100%;
+  position: absolute;
+}
+/* line 65, ../sass/index.scss */
+.part1 .tipdown {
+  width: 57px;
+  height: 42px;
+  bottom: 20px;
+  left: 50%;
+  display: inline-block;
+  margin-left: -29px;
+  position: absolute;
+  background-image: url("../images/tip_down.png");
+}
+
+/* line 76, ../sass/index.scss */
+.part2 {
+  position: relative;
+  min-width: 1400px;
+  background: url("../images/bg.jpg") top center no-repeat;
+  background-size: 100% 100%;
+}
+
+/* line 82, ../sass/index.scss */
+.container {
+  top: 50%;
+  left: 50%;
+  margin-top: -300px;
+  margin-left: -500px;
+  position: absolute;
+  height: 570px;
+  width: 820px;
+  padding: 15px 90px;
+  background: url("../images/container2.png") top left no-repeat;
+  background-size: 100% 100%;
+}
+/* line 93, ../sass/index.scss */
+.container .avatar {
+  margin-top: 50px;
+  width: 150px;
+  height: 150px;
+  border: 6px solid #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+/* line 104, ../sass/index.scss */
+.container .info {
+  padding: 20px;
+  width: 590px;
+  height: 220px;
+  position: relative;
+  background-color: #fff;
+  vertical-align: middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 116, ../sass/index.scss */
+.container .tip {
+  top: 50%;
+  left: -15px;
+  margin-top: -12px;
+  position: absolute;
+  width: 15px;
+  height: 24px;
+  background-image: url("../images/tip_left.jpg");
+  display: inline-block;
+  background-size: 100% 100%;
+}
+/* line 128, ../sass/index.scss */
+.container .fl .tip {
+  left: 100%;
+  right: -15px;
+  background-image: url("../images/tip_right.jpg");
+  background-size: 100% 100%;
+}
+/* line 134, ../sass/index.scss */
+.container .info-p {
+  font-size: 0;
+  margin-bottom: 8px;
+}
+/* line 138, ../sass/index.scss */
+.container .icon {
+  font-size: 14px;
+  color: #fff;
+  width: 70px;
+  padding-left: 35px;
+  height: 29px;
+  line-height: 29px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 148, ../sass/index.scss */
+.container .icon1 {
+  background-image: url("../images/icon_01.jpg");
+  background-size: 100% 100%;
+}
+/* line 152, ../sass/index.scss */
+.container .icon2 {
+  background-image: url("../images/icon_02.jpg");
+  background-size: 100% 100%;
+}
+/* line 156, ../sass/index.scss */
+.container .icon3 {
+  background-image: url("../images/icon_03.jpg");
+  background-size: 100% 100%;
+}
+/* line 160, ../sass/index.scss */
+.container .icon4 {
+  background-image: url("../images/icicon_04.jpg");
+  background-size: 100% 100%;
+}
+/* line 164, ../sass/index.scss */
+.container .icon5 {
+  background-image: url("../images/icon_05.jpg");
+  background-size: 100% 100%;
+}
+/* line 168, ../sass/index.scss */
+.container .info-word {
+  margin-left: 14px;
+  display: inline-block;
+  color: #020202;
+  font-size: 16px;
+  width: 470px;
+  vertical-align: top;
+}
+/* line 177, ../sass/index.scss */
+.container .con-icon {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+/* line 183, ../sass/index.scss */
+.container .title {
+  text-align: left;
+  color: #333333;
+  font-size: 20px;
+  line-height: 35px;
+}
+/* line 189, ../sass/index.scss */
+.container .detail {
+  text-align: left;
+  color: #c0c0c0;
+  font-size: 14px;
+}
+/* line 194, ../sass/index.scss */
+.container .side-part {
+  width: 290px;
+}
+/* line 197, ../sass/index.scss */
+.container .link {
+  padding: 30px 10px 30px 30px;
+  border-bottom: 1px solid #e0e1e3;
+}
+/* line 201, ../sass/index.scss */
+.container .link:last-child {
+  border-bottom: 0 none;
+}
+/* line 204, ../sass/index.scss */
+.container .link-img {
+  width: 220px;
+  margin: 5px 10px;
+}
+
+/* line 209, ../sass/index.scss */
+.side {
+  position: fixed;
+  right: 50%;
+  margin-right: -480px;
+  top: 50%;
+  padding: 24px 6px;
+  margin-top: -115px;
+  width: 18px;
+  text-align: center;
+  background-image: url("../images/nav_bg.jpg");
+  background-size: 100% 100%;
+  z-index: 99;
+  display: none;
+}
+/* line 223, ../sass/index.scss */
+.side .list-btn {
+  display: block;
+  margin: 0 3px 30px;
+  width: 8px;
+  height: 8px;
+  background-color: #f86bcf;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 235, ../sass/index.scss */
+.side .active {
+  margin: 0 -1px 25px;
+  width: 18px;
+  height: 24px;
+  background: url("../images/action.jpg");
+  background-size: 100% 100%;
+}
+/* line 242, ../sass/index.scss */
+.side .list-btn:last-child {
+  margin-bottom: 0;
+}
+
+/* line 249, ../sass/index.scss */
+.ta {
+  text-align: center;
+}
