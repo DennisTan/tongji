@@ -15,7 +15,7 @@ public class WebController
 	
 	@RequestMapping(value="/")
 	public String index() {
-		return "cardCentre";
+		return "index";
 	}
 	
 	@RequestMapping(value="/cardcentre")
