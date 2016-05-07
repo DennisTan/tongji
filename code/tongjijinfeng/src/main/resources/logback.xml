@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="maxHistory" value="30"/>
+    <property name="logHome" value="logs" />
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="all_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logHome}/all.log</File>
+         <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logHome}/all.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <MaxHistory>${maxHistory}</MaxHistory>
+        </rollingPolicy>
+        <encoder>  
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>  
+        </encoder> 
+    </appender>
+    
+    <appender name="error_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${logHome}/error.log</File>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logHome}/error.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <!-- <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${logHome}/error.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>10</maxIndex>
+        </rollingPolicy> -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>  
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder> 
+    </appender>
+
+    <root level="INFO" additivity="true">
+        <appender-ref ref="error_log" />
+        <appender-ref ref="all_log"/>
+    </root>
+
+    <logger name="org" level="error" />
+    <logger name="com.tongjijinfeng" level="debug" />
+    
+    <!-- c3p0 log configure -->
+    <logger name="com.mchange.v2" level="WARN" />
+    
+    <!-- database log configure -->
+    <logger name="java.sql.Connection" level="WARN"/>
+    <logger name="java.sql.Statement" level="WARN"/>
+    <logger name="java.sql.PreparedStatement" level="WARN"/>
+</configuration>
