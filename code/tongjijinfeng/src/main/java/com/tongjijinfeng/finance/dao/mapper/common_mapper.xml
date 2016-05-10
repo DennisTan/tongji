@@ -2,5 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongjijinfeng.finance.dao.service.CommonDao">
+   <select id="querySysConfig" resultType="com.tongjijinfeng.finance.dao.vo.SysConfig">
+       select a.key , a.value from sys_config a where a.key = '#{key}' limit 0,1
+   </select>
+   <insert id="insert">
+       insert into sys_config values('#{key}','#{value}')
+   </insert>
    
+   <update id="updateValue">
+       update sys_config a set a.value = '#{value}' where a.key = '#{key}'
+   </update>
 </mapper>

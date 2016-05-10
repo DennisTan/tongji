@@ -56,7 +56,7 @@ public class DBConfig  implements ApplicationContextAware{
 	SqlSessionFactoryBean sqlSessionFactory() throws IOException {
 		SqlSessionFactoryBean sqlSession = new SqlSessionFactoryBean();
 		sqlSession.setDataSource(ctx.getBean("mysql_datasource", DataSource.class));
-		sqlSession.setTypeAliasesPackage("com.tongjijinfeng.finance.dao.model");
+		sqlSession.setTypeAliasesPackage("com.tongjijinfeng.finance.dao.vo");
 		sqlSession.setConfigLocation(new ClassPathResource("com/tongjijinfeng/finance/dao/mapper/mybatis_config.xml"));
 		Resource[] resources = new PathMatchingResourcePatternResolver()
 				.getResources("classpath:com/tongjijinfeng/finance/dao/mapper/*mapper.xml");

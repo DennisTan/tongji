@@ -10,4 +10,5 @@ public interface CommonDao {
 	
 	void updateValue(String key, String value);
 	
+	
 }

@@ -22,11 +22,6 @@ public class WebController
 		return "index";
 	}
 	
-	@RequestMapping(value="/cardcentre")
-	public String cardCentre() {
-		return "cardCentre";
-	}
-	
 	@RequestMapping(value="/cardcentre/handlecardpre")
 	public String handleCardPrefecture() {
 		return "handlecardPrefecture";
@@ -52,10 +47,6 @@ public class WebController
 		return "whiteUserStrategy";
 	}
 	
-	@RequestMapping(value="/loancentre")
-	public String loanCentre() {
-		return "loanCentre";
-	}
 	
 	@RequestMapping(value="/loancentre/p2pnetloan")
 	public String p2pNetLoan() {
@@ -72,11 +63,6 @@ public class WebController
 		return "myCentre";
 	}
 	
-	@RequestMapping(value="/mentamountmaintcard")
-	public String mentionAmountMaintenanceCard()
-	{
-		return "mentionAmountMaintenanceCard";
-	}
 	
 	@RequestMapping(value="/mentamountmaintcard/mentamount")
 	public String mentionAmount()
