@@ -25,6 +25,23 @@ public class WeChatServiceImpl implements WeChatService{
 	@Autowired
 	private CommonDao commonDao;
 	
+	public boolean checkCode(String code)
+	{
+		//通过code获取鉴权的accesstoken
+		OauthAccessToken accessToken = acquireOauthAccessToken(code);
+		if(accessToken == null)
+		{
+			return false;
+		}
+		//通过openid 获取用户数据
+		WechatUserInfo userinfo = acquireWechatUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
+		if(userinfo == null)
+		{
+			return false;
+		}
+		return true;
+	}
+	
 	public OauthAccessToken acquireOauthAccessToken(String code)
 	{
 		String url = WeChatConst.WECHATOAUTHURL+WeChatConst.OAUTHACCESSTOKENURI;
