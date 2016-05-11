@@ -119,10 +119,4 @@ public class WeChatServiceImpl implements WeChatService{
 		return null;
 	}
 
-	
-	
-	
-	
-	
-	
 }
