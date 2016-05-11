@@ -16,5 +16,13 @@ public interface WeChatConst {
 	
 	String MENUCREATE = "/menu/create";
 	
+	String WECHATOAUTHURL = "https://api.weixin.qq.com/sns";
+	
+	String OAUTHACCESSTOKENURI = "/oauth2/access_token";
+	
+	String OAUTHREFRESHTOKENURI = "/oauth2/refresh_token";
+	
+	String OAUTHUSERINFOURI = "/userinfo";
+	
 	
 }

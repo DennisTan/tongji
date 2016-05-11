@@ -47,6 +47,8 @@ public class WeChatController {
 	
 	@RequestMapping(value="/cardcentre")
 	public String cardCentre(@RequestParam String code, @RequestParam String state) {
+		
+		
 		return "cardCentre";
 	}
 	
