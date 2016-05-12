@@ -25,23 +25,25 @@ public class WeChatServiceImpl implements WeChatService{
 	@Autowired
 	private CommonDao commonDao;
 	
-	public boolean checkCode(String code)
+	@Override
+	public String checkCode(String code)
 	{
 		//通过code获取鉴权的accesstoken
 		OauthAccessToken accessToken = acquireOauthAccessToken(code);
 		if(accessToken == null)
 		{
-			return false;
+			return "account_error";
 		}
 		//通过openid 获取用户数据
 		WechatUserInfo userinfo = acquireWechatUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
 		if(userinfo == null)
 		{
-			return false;
+			return "account_error";
 		}
-		return true;
+		return null;
 	}
 	
+	@Override
 	public OauthAccessToken acquireOauthAccessToken(String code)
 	{
 		String url = WeChatConst.WECHATOAUTHURL+WeChatConst.OAUTHACCESSTOKENURI;
@@ -84,7 +86,6 @@ public class WeChatServiceImpl implements WeChatService{
 		String response = HttpClientUtils.doGetWithoutHead(url, param);
 		log.debug(" acquireOauthRefreshToken response :"+response);
 		try {
-			
 			JSONObject responseJson = JSONObject.parseObject(response);
 			OauthAccessToken authAccessToken = new OauthAccessToken();
 			if(!responseJson.containsKey("errcode"))
@@ -113,7 +114,6 @@ public class WeChatServiceImpl implements WeChatService{
 		String response = HttpClientUtils.doGetWithoutHead(url, param);
 		log.debug(" acquireWechatUserInfo response :"+response);
 		try {
-			
 			JSONObject responseJson = JSONObject.parseObject(response);
 			WechatUserInfo wechatUserInfo = new WechatUserInfo();
 			if(!responseJson.containsKey("errcode"))

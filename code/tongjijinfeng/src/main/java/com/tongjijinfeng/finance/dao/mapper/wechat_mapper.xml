@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongjijinfeng.finance.dao.service.WeChatDao">
-   
-   <insert id="insertWeChatUser">
-       insert into wechat_account values(#{openid},#{nickname},#{sex},#{province},#{city},#{country},#{headimgurl},,#{privilege},,#{unionid},,sysdate,sysdate)
+   <insert id="insertWeChatUser" parameterType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
+       insert into wechat_account values(#{openid},#{nickname},#{sex},#{province},#{city},#{country},#{headimgurl},#{privilege},#{unionid},#{createtime},#{updatetime})
    </insert>
+   
+   <select id="queryUserByOpenId" resultType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
+       select * from wechat_account where openid = #{0}
+   </select>
    
 </mapper>

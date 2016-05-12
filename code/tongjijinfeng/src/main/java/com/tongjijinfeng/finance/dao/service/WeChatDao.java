@@ -6,4 +6,6 @@ public interface WeChatDao
 {
 	public void insertWeChatUser(WeChatAccount account);
 
+	public WeChatAccount queryUserByOpenId(String openId);
+	
 }

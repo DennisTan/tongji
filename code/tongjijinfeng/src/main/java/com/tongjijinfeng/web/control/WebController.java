@@ -93,4 +93,10 @@ public class WebController
 	{
 		return "maintenanceCard";
 	}
+	
+	@RequestMapping(value="/account/error")
+	public String accountError()
+	{
+		return "account_error";
+	}
 }
