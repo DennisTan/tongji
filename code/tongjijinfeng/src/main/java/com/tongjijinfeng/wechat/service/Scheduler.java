@@ -25,7 +25,7 @@ public class Scheduler {
 	@Autowired
 	private CommonDao commonDao;
 
-	//@Scheduled(cron = "0/7200 * * * * ?")
+	@Scheduled(cron = "0/7200 * * * * ?")
 	public void checkAccessToken()
 	{
 		log.debug("start checkAccessToken : ");
