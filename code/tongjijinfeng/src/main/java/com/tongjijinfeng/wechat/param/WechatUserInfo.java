@@ -20,6 +20,8 @@ public class WechatUserInfo
 	
 	private String unionid;
 
+	private String subscribeTime;
+	
 	public String getOpenId() {
 		return openId;
 	}
@@ -90,6 +92,14 @@ public class WechatUserInfo
 
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
+	}
+
+	public String getSubscribeTime() {
+		return subscribeTime;
+	}
+
+	public void setSubscribeTime(String subscribeTime) {
+		this.subscribeTime = subscribeTime;
 	}
 	
 	

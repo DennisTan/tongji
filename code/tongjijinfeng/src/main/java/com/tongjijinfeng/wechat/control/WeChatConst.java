@@ -16,6 +16,8 @@ public interface WeChatConst {
 	
 	String MENUCREATE = "/menu/create";
 	
+	String USERINFO = "/user/info";
+	
 	String WECHATOAUTHURL = "https://api.weixin.qq.com/sns";
 	
 	String OAUTHACCESSTOKENURI = "/oauth2/access_token";
@@ -34,5 +36,6 @@ public interface WeChatConst {
 	
 	String WECHAT_MESSAGE_EVENT_VALUE_UNSUBSCRIBE = "unsubscribe";
 	
+	String WECHAT_MESSAGE_OPENID_KEY = "FromUserName";
 	
 }

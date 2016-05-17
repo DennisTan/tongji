@@ -25,5 +25,7 @@
    <select id="querySubscribeUser" resultType="java.util.List">
        select * from wechat_account where subscribeStat = 'subscribe' 
    </select>
-   
+   <update id = "updateSubscribeStat" >
+       update wechat_account a set a.subscribeStat=#{1}, a.subscribetime=#{2} , a.updateTime = #{3} where a.openid =#{0}
+   </update>
 </mapper>

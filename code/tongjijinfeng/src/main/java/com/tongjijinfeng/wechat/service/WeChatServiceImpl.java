@@ -1,8 +1,10 @@
 package com.tongjijinfeng.wechat.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONObject;
 import com.tongjijinfeng.finance.common.HttpClientUtils;
 import com.tongjijinfeng.finance.dao.service.CommonDao;
+import com.tongjijinfeng.finance.dao.service.WeChatDao;
+import com.tongjijinfeng.finance.dao.vo.WeChatAccount;
+import com.tongjijinfeng.wechat.WeChatGlobalVar;
 import com.tongjijinfeng.wechat.control.WeChatConst;
 import com.tongjijinfeng.wechat.param.OauthAccessToken;
 import com.tongjijinfeng.wechat.param.WechatUserInfo;
@@ -23,6 +28,9 @@ public class WeChatServiceImpl implements WeChatService{
 	@Autowired
 	private CommonDao commonDao;
 	
+	@Autowired
+	private WeChatDao weChatDao;
+	
 	@Override
 	public String checkCode(String code)
 	{
@@ -34,7 +42,7 @@ public class WeChatServiceImpl implements WeChatService{
 			return "account_error";
 		}
 		//通过openid 获取用户数据
-		WechatUserInfo userinfo = acquireWechatUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
+		WechatUserInfo userinfo = acquireOauthUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
 		log.debug("checkCode userinfo : "+JSONObject.toJSONString(userinfo));
 		if(userinfo == null)
 		{
@@ -104,7 +112,7 @@ public class WeChatServiceImpl implements WeChatService{
 	}
 
 	@Override
-	public WechatUserInfo acquireWechatUserInfo(String accessToken, String openId, String lang) {
+	public WechatUserInfo acquireOauthUserInfo(String accessToken, String openId, String lang) {
 		// TODO Auto-generated method stub
 		String url =  WeChatConst.WECHATOAUTHURL+WeChatConst.OAUTHUSERINFOURI;
 		Map<String, String> param = new HashMap<String, String>();
@@ -154,6 +162,61 @@ public class WeChatServiceImpl implements WeChatService{
 
 	/**
 	 * 
+	 */
+	public WechatUserInfo acquireUserInfo(String openId)
+	{
+		String url = WeChatConst.WECHATURL+WeChatConst.USERINFO;
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("access_token", WeChatGlobalVar.accessToken);
+		param.put("openid", openId);
+		param.put("lang", "zh_CN");
+		String response = HttpClientUtils.doGetWithoutHead(url, param);
+		log.debug(" acquireUserInfo response :"+response);
+		try {
+			JSONObject responseJson = JSONObject.parseObject(response);
+			
+			if(!responseJson.containsKey("errcode"))
+			{
+				WechatUserInfo wechatUserInfo = new WechatUserInfo();
+				String subscribe = responseJson.getString("subscribe");
+				if("0".equalsIgnoreCase(subscribe))
+				{
+					return null;
+				}
+				String ret_openId = responseJson.getString("openid");
+				wechatUserInfo.setOpenId(ret_openId);
+				String ret_nickName = responseJson.getString("nickname");
+				wechatUserInfo.setNickname(ret_nickName);
+				String ret_sex = responseJson.getString("sex");
+				wechatUserInfo.setSex(ret_sex);
+				String ret_city = responseJson.getString("city");
+				wechatUserInfo.setCity(ret_city);
+				String ret_country = responseJson.getString("country");
+				wechatUserInfo.setCountry(ret_country);
+				String ret_province = responseJson.getString("province");
+				wechatUserInfo.setProvince(ret_province);
+				String ret_language = responseJson.getString("language");
+				
+				String ret_headimgurl = responseJson.getString("headimgurl");
+				wechatUserInfo.setHeadimgurl(ret_headimgurl);
+				String ret_subscribeTime = responseJson.getString("subscribe_time");
+				wechatUserInfo.setSubscribeTime(ret_subscribeTime);
+				String ret_unionId = responseJson.getString("unionid");
+				wechatUserInfo.setUnionid(ret_unionId);
+				String ret_remark = responseJson.getString("remark");
+				String ret_groupId = responseJson.getString("groupid");
+				String ret_tagid_list = responseJson.getString("tagid_list");
+				return wechatUserInfo;
+			}
+			
+		} catch (Exception e) {
+			log.error(e);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
 	 * @param content
 	 */
 	private void receiveSubscribe(Map<String, String> content)
@@ -162,8 +225,47 @@ public class WeChatServiceImpl implements WeChatService{
 			
 			@Override
 			public void run() {
-				
-				
+				//判断是否已经在关注人员名单中
+				String openId = content.get(WeChatConst.WECHAT_MESSAGE_OPENID_KEY);
+				log.debug("openid : "+openId);
+				if(!StringUtils.isEmpty(openId))
+				{
+					WechatUserInfo userInfo = acquireUserInfo(openId);
+					WeChatAccount account = weChatDao.queryUserByOpenId(openId);
+					if(account == null)
+					{
+						WeChatAccount newaccount = new WeChatAccount();
+						
+						if(userInfo != null)
+						{
+							newaccount.setCity(userInfo.getCity());
+							newaccount.setCountry(userInfo.getCountry());
+							newaccount.setCreatetime(new Date());
+							newaccount.setHeadimgurl(userInfo.getHeadimgurl());
+							newaccount.setOpenid(userInfo.getOpenId());
+							newaccount.setPrivilege(userInfo.getPrivilege());
+							newaccount.setProvince(userInfo.getProvince());
+							newaccount.setSex(userInfo.getSex());
+							newaccount.setSubscribeStat(WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_SUBSCRIBE);
+							newaccount.setSubscribetime(userInfo.getSubscribeTime());
+							newaccount.setUnionid(userInfo.getUnionid());
+							newaccount.setUpdatetime(new Date());
+							weChatDao.insertWeChatUser(newaccount);
+						}
+					}
+					else
+					{
+						if(WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_UNSUBSCRIBE.equalsIgnoreCase(account.getSubscribeStat()))
+						{
+							if(userInfo != null)
+							{
+								weChatDao.updateSubscribeStat(openId, WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_SUBSCRIBE, userInfo.getSubscribeTime(), new Date());
+							}
+							
+						}
+					}
+					
+				}
 			}
 		});
 		
@@ -176,11 +278,19 @@ public class WeChatServiceImpl implements WeChatService{
 			
 			@Override
 			public void run() {
-				
-				
+				//判断是否已经在关注人员名单中
+				String openId = content.get(WeChatConst.WECHAT_MESSAGE_OPENID_KEY);
+				log.debug("openid : "+openId);
+				if(!StringUtils.isEmpty(openId))
+				{
+					WeChatAccount account = weChatDao.queryUserByOpenId(openId);
+					if(account != null)
+					{
+						weChatDao.updateSubscribeStat(openId, WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_UNSUBSCRIBE, account.getSubscribetime(), new Date());
+					}
+				}
 			}
 		});
-		
 		thread.start();
 	}
 }

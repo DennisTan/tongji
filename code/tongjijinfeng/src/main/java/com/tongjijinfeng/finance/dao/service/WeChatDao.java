@@ -1,5 +1,6 @@
 package com.tongjijinfeng.finance.dao.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.tongjijinfeng.finance.dao.vo.WeChatAccount;
@@ -18,4 +19,5 @@ public interface WeChatDao
 	
 	public List<WeChatAccount> querySubscribeUser();
 	
+	public void updateSubscribeStat(String openId, String subscribeStat, String subscribeTime, Date updatetime);
 }

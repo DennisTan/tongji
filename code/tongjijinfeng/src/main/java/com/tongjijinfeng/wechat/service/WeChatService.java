@@ -11,10 +11,11 @@ public interface WeChatService {
 	
 	public OauthAccessToken acquireOauthRefreshToken(String refreshToken);
 	
-	public WechatUserInfo acquireWechatUserInfo(String accessToken, String openId, String lang);
+	public WechatUserInfo acquireOauthUserInfo(String accessToken, String openId, String lang);
 	
 	public String checkCode(String code);
 	
 	public void receiveEvent(Map<String, String> content);
 	
+	public WechatUserInfo acquireUserInfo(String openId);
 }
