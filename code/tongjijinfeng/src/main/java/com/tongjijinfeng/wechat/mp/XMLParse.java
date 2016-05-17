@@ -10,12 +10,15 @@ package com.tongjijinfeng.wechat.mp;
 
 
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -24,7 +27,7 @@ import org.xml.sax.InputSource;
  *
  * 提供提取消息格式中的密文及生成回复消息格式的接口.
  */
-class XMLParse {
+public class XMLParse {
 
 	/**
 	 * 提取出xml数据包中的加密消息
@@ -54,6 +57,29 @@ class XMLParse {
 		}
 	}
 
+	public static Map<String, String> parseMessageXML(String xmltext )
+	{
+		Map<String, String> element = new HashMap<String, String>();
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			StringReader sr = new StringReader(xmltext);
+			InputSource is = new InputSource(sr);
+			Document document = db.parse(is);
+
+			Element root = document.getDocumentElement();
+			NodeList nodeList = root.getChildNodes();
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Node node = nodeList.item(i);
+				String key = node.getNodeName();
+				String value = node.getTextContent();
+				element.put(key, value);
+			}
+		} catch (Exception e) {
+			
+		}
+		return element;
+	}
 	/**
 	 * 生成xml消息
 	 * @param encrypt 加密后的消息密文
@@ -70,4 +96,10 @@ class XMLParse {
 		return String.format(format, encrypt, signature, timestamp, nonce);
 
 	}
+	
+//	public static void main(String[] args) {
+//		String xmltext = "<xml><URL><![CDATA[http://www.tongjijinfen.com/wechat/notify]]></URL><ToUserName><![CDATA[tongjijinfen]]></ToUserName><FromUserName><![CDATA[tanxian]]></FromUserName><CreateTime>1234656789</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[subscribe]]></Event><Latitude>20</Latitude><Longitude>30</Longitude><Precision></Precision><MsgId>1234567890</MsgId></xml>";
+//		XMLParse.parseMessageXML(xmltext);
+//		System.exit(0);
+//	}
 }

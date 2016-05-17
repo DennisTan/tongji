@@ -24,5 +24,15 @@ public interface WeChatConst {
 	
 	String OAUTHUSERINFOURI = "/userinfo";
 	
+	String WECHAT_MESSAGE_MSGTYPE_KEY = "MsgType";
+	
+	String WECHAT_MESSAGE_MSGTYPE_VALUE_EVENT = "event";
+	
+	String WECHAT_MESSAGE_EVENT_KEY = "Event";
+	
+	String WECHAT_MESSAGE_EVENT_VALUE_SUBSCRIBE = "subscribe";
+	
+	String WECHAT_MESSAGE_EVENT_VALUE_UNSUBSCRIBE = "unsubscribe";
+	
 	
 }

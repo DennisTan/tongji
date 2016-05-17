@@ -7,7 +7,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tongjijinfeng.finance.common.HttpClientUtils;
@@ -17,7 +16,6 @@ import com.tongjijinfeng.wechat.param.OauthAccessToken;
 import com.tongjijinfeng.wechat.param.WechatUserInfo;
 
 @Component
-@Transactional
 public class WeChatServiceImpl implements WeChatService{
 
 	private Log log = LogFactory.getLog(WeChatServiceImpl.class);
@@ -30,12 +28,14 @@ public class WeChatServiceImpl implements WeChatService{
 	{
 		//通过code获取鉴权的accesstoken
 		OauthAccessToken accessToken = acquireOauthAccessToken(code);
+		log.debug("checkCode accessToken :"+accessToken);
 		if(accessToken == null)
 		{
 			return "account_error";
 		}
 		//通过openid 获取用户数据
 		WechatUserInfo userinfo = acquireWechatUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
+		log.debug("checkCode userinfo : "+JSONObject.toJSONString(userinfo));
 		if(userinfo == null)
 		{
 			return "account_error";
@@ -136,4 +136,51 @@ public class WeChatServiceImpl implements WeChatService{
 		return null;
 	}
 
+	/**
+	 * 
+	 */
+	@Override
+	public void receiveEvent(Map<String, String> content) {
+		if(content.get(WeChatConst.WECHAT_MESSAGE_EVENT_KEY).equalsIgnoreCase(WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_SUBSCRIBE))
+		{
+			receiveSubscribe(content);
+		}
+		if(content.get(WeChatConst.WECHAT_MESSAGE_EVENT_KEY).equalsIgnoreCase(WeChatConst.WECHAT_MESSAGE_EVENT_VALUE_UNSUBSCRIBE))
+		{
+			receiveUnsubscribe(content);
+		}
+		
+	}
+
+	/**
+	 * 
+	 * @param content
+	 */
+	private void receiveSubscribe(Map<String, String> content)
+	{
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				
+			}
+		});
+		
+		thread.start();
+	}
+	
+	private void receiveUnsubscribe(Map<String, String> content)
+	{
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				
+			}
+		});
+		
+		thread.start();
+	}
 }

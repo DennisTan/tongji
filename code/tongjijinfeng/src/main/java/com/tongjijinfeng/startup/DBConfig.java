@@ -66,7 +66,7 @@ public class DBConfig  implements ApplicationContextAware{
 
 	@Bean(name = "mysql_transactionmanager")
 	@DependsOn("mysql_datasource")
-	PlatformTransactionManager sdkserver_transactionManager() {
+	PlatformTransactionManager server_transactionManager() {
 		return new DataSourceTransactionManager(ctx.getBean("mysql_datasource", DataSource.class));
 	}
 

@@ -3,11 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongjijinfeng.finance.dao.service.WeChatDao">
    <insert id="insertWeChatUser" parameterType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
-       insert into wechat_account values(#{openid},#{nickname},#{sex},#{province},#{city},#{country},#{headimgurl},#{privilege},#{unionid},#{createtime},#{updatetime})
+       insert into wechat_account values(#{openid},#{nickname},#{sex},#{province},#{city},#{country},#{headimgurl},#{privilege},#{unionid},#{subscribeStat},#{subscribetime},#{unsubscribetime},#{createtime},#{updatetime})
    </insert>
    
    <select id="queryUserByOpenId" resultType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
-       select * from wechat_account where openid = #{0}
+       select * from wechat_account where openid = #{0} 
+   </select>
+   
+   <select id="querySubscribeUserByOpenId" resultType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
+       select * from wechat_account where openid = #{0} and subscribeStat = 'subscribe'
+   </select>
+   
+   <select id="queryUnsubscribeUserByOpenId" resultType="com.tongjijinfeng.finance.dao.vo.WeChatAccount">
+       select * from wechat_account where openid = #{0} and subscribeStat = 'unsubscribe' 
+   </select>
+   
+   <select id="queryUnsubscribeUser" resultType="java.util.List">
+       select * from wechat_account where subscribeStat = 'unsubscribe' 
+   </select>
+   
+   <select id="querySubscribeUser" resultType="java.util.List">
+       select * from wechat_account where subscribeStat = 'subscribe' 
    </select>
    
 </mapper>

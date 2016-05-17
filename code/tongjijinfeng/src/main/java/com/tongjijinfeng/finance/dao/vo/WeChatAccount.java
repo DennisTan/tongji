@@ -22,9 +22,16 @@ public class WeChatAccount
 	
 	private String unionid;
 
+	private String subscribeStat;
+	
+	private String subscribetime;
+	
+	private String unsubscribetime;
+	
 	private Date createtime;
 	
 	private Date updatetime;
+	
 	
 	public String getOpenid() {
 		return openid;
@@ -96,6 +103,30 @@ public class WeChatAccount
 
 	public void setUnionid(String unionid) {
 		this.unionid = unionid;
+	}
+
+	public String getSubscribeStat() {
+		return subscribeStat;
+	}
+
+	public void setSubscribeStat(String subscribeStat) {
+		this.subscribeStat = subscribeStat;
+	}
+
+	public String getSubscribetime() {
+		return subscribetime;
+	}
+
+	public void setSubscribetime(String subscribetime) {
+		this.subscribetime = subscribetime;
+	}
+
+	public String getUnsubscribetime() {
+		return unsubscribetime;
+	}
+
+	public void setUnsubscribetime(String unsubscribetime) {
+		this.unsubscribetime = unsubscribetime;
 	}
 
 	public Date getCreatetime() {
