@@ -3,14 +3,9 @@ package com.tongjijinfeng.wechat.control;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.Map;
 
-import javax.management.modelmbean.XMLParseException;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -170,6 +165,36 @@ public class WeChatController {
 		else
 		{
 			return result;
+		}
+		
+	}
+	
+	@RequestMapping(value="/setmenu")
+	public ResponseEntity<?> setMenu(@RequestParam String pass)
+	{
+		if("tanxian".equals(pass))
+		{
+			weChatService.setMenu();
+			return ResponseEntity.ok("finish");
+		}
+		else
+		{
+			return ResponseEntity.ok("pass is error");
+		}
+		
+	}
+	
+	@RequestMapping(value="/getUsers")
+	public ResponseEntity<?> getUsers(@RequestParam String pass)
+	{
+		if("tanxian".equals(pass))
+		{
+			weChatService.getUsers();
+			return ResponseEntity.ok("finish");
+		}
+		else
+		{
+			return ResponseEntity.ok("pass is error");
 		}
 		
 	}

@@ -1,5 +1,6 @@
 package com.tongjijinfeng.wechat.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.tongjijinfeng.wechat.param.OauthAccessToken;
@@ -18,4 +19,13 @@ public interface WeChatService {
 	public void receiveEvent(Map<String, String> content);
 	
 	public WechatUserInfo acquireUserInfo(String openId);
+	
+	public List<WechatUserInfo> acquireUserInfoBatch(List<String> openIdlist);
+	
+	public List<String> acquireUserList();
+	
+	public void setMenu();
+	
+	public void getUsers();
+	
 }

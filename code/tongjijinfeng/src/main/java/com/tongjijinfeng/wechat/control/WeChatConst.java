@@ -14,9 +14,11 @@ public interface WeChatConst {
 	
 	String TOKENURI = "/token";
 	
-	String MENUCREATE = "/menu/create";
+	String MENUCREATEURI = "/menu/create";
 	
-	String USERINFO = "/user/info";
+	String USERINFOURI = "/user/info";
+	
+	String GETUSERLISTURI = "/user/get";
 	
 	String WECHATOAUTHURL = "https://api.weixin.qq.com/sns";
 	
