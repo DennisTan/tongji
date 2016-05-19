@@ -58,12 +58,6 @@ public class WebController
 		return "chuqiankouzi";
 	}
 	
-	@RequestMapping(value="/my/centre")
-	public String mycentre() {
-		return "myCentre";
-	}
-	
-	
 	@RequestMapping(value="/mentamountmaintcard/mentamount")
 	public String mentionAmount()
 	{

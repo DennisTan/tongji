@@ -3,31 +3,13 @@
   <head>
   <base href="/"></base>
     <meta th:replace="layout_header" />
-    <title ng-bind-template="通际金粉"></title>
+    <title ng-bind-template="我的通粉"></title>
   </head>
-  <body>
-  <div class="container-fluid">
-     <div class="row">
-	  	<div class="row">
-	      	<div class="media">
-			  <div class="media-left">
-			      <img class="media-object" src="/image/none.jpg" alt="..."></img>
-			  </div>
-			  <div class="media-body">
-			  账号：T00000001
-			  <br></br>
-			  昵称： 通际商务
-			  <br></br>
-			  关注日期：2016-02-22
-			  <br></br>
-			  来源：用户推荐
-			  </div>
-			</div>
-    	</div>
-    	<div class="row">
-	      	
-    	</div>
-	 </div>
-	</div>
+  <body  ng-app="mycentre">
+     <div ng-controller="myCentreMainCtrl as mycentremc">
+	      <div class="ng-view"></div>
+    </div>
   </body>
+ 
 </html>
+<script src="/app/myCentreProviders.js"></script>

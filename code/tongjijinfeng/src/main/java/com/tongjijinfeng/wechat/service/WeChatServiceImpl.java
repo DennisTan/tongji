@@ -38,6 +38,10 @@ public class WeChatServiceImpl implements WeChatService{
 	@Override
 	public String checkCode(String code)
 	{
+		if(StringUtils.isEmpty(code))
+		{
+			return "account_error";
+		}
 		//通过code获取鉴权的accesstoken
 		OauthAccessToken accessToken = acquireOauthAccessToken(code);
 		log.debug("checkCode accessToken :"+accessToken);
@@ -46,9 +50,14 @@ public class WeChatServiceImpl implements WeChatService{
 			return "account_error";
 		}
 		//通过openid 获取用户数据
-		WechatUserInfo userinfo = acquireOauthUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
-		log.debug("checkCode userinfo : "+JSONObject.toJSONString(userinfo));
-		if(userinfo == null)
+//		WechatUserInfo userinfo = acquireOauthUserInfo(accessToken.getAccessToken(), accessToken.getOpenId(), "zh_CN");
+//		log.debug("checkCode userinfo : "+JSONObject.toJSONString(userinfo));
+//		if(userinfo == null)
+//		{
+//			return "account_error";
+//		}
+		WeChatAccount account = weChatDao.querySubscribeUserByOpenId(accessToken.getOpenId());
+		if(account == null)
 		{
 			return "account_error";
 		}

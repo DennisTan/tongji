@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
 import com.alibaba.fastjson.JSONObject;
 import com.tongjijinfeng.wechat.mp.WXBizMsgCrypt;
 import com.tongjijinfeng.wechat.mp.XMLParse;
@@ -161,6 +162,21 @@ public class WeChatController {
 		if(StringUtils.isEmpty(result))
 		{
 			return "mentionAmountMaintenanceCard";
+		}
+		else
+		{
+			return result;
+		}
+		
+	}
+	
+	@RequestMapping(value="/my/centre")
+	public String mycentre(@RequestParam String code, @RequestParam String state) {
+		log.debug("code : "+code+", state : "+state);
+		String result = weChatService.checkCode(code);
+		if(StringUtils.isEmpty(result))
+		{
+			return "myCentre";
 		}
 		else
 		{
